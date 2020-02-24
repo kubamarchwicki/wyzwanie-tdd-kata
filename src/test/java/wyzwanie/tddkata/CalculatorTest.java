@@ -19,5 +19,13 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(0));
     }
+    @Test
+    public void should_return_two_for_2(){
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "2";
 
+        Integer result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(2));
+    }
 }
