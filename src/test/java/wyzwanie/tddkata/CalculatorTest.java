@@ -2,8 +2,7 @@ package wyzwanie.tddkata;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CalculatorTest {
 
@@ -17,7 +16,7 @@ public class CalculatorTest {
         Integer result = calculatorUnderTest.add(emptyString);
 
         //then
-        assertThat(result, equalTo(0));
+        assertThat(result).isEqualTo(0);
     }
 
 }
