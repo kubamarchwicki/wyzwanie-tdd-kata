@@ -46,4 +46,17 @@ public class CalculatorTest {
         //then
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void should_return_three_when_string_equal_one_and_two() {
+        //given
+        String input = "1,2";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(6));
+    }
+
 }
