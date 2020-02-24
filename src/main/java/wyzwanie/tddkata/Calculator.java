@@ -6,11 +6,15 @@ public class Calculator {
 
 
     public Integer add(String input) {
-        if (input.isEmpty()){
+        if (isEmpty(input)){
             return 0;
         }
 
         return Integer.valueOf(input);
+    }
+
+    private boolean isEmpty(String input){
+        return input.isEmpty();
     }
 
 
