@@ -20,4 +20,12 @@ public class CalculatorTest {
         assertThat(result, equalTo(0));
     }
 
+    @Test
+    public void should_return_10_from_5comma5(){
+        Calculator calculatorUnderTest = new Calculator();
+
+        Integer result = calculatorUnderTest.add("5,5");
+
+        assertThat(result, equalTo(10));
+    }
 }
