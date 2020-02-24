@@ -56,7 +56,7 @@ public class CalculatorTest {
         Integer result = calculatorUnderTest.add(input);
 
         //then
-        assertThat(result, equalTo(6));
+        assertThat(result, equalTo(3));
     }
 
 }
