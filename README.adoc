@@ -1,0 +1,62 @@
+= Wyzwanie TDD Kata
+
+== https://github.com/kubamarchwicki/wyzwanie-tdd-kata
+
+== Test Katas
+
+Kata::
+* wysoce sformalizowany rodzaj ćwiczeń stosowanych w wielu tradycyjnych sztukach i sportach walki
+* sekwencje technik ataku i obrony, połączone z określonym poruszaniem, przyjęciem ściśle określonej pozycji i sposobu oddychania
+* ciągłe powtarzanie określonych czynności według zdefiniowanego schematu
+
+Kata w programowaniu::
+* powrót do korzeni, użycie konkretnego algorytmu albo pokonanie znanego problemu logicznego czy matematycznego
+
+== Praca
+
+1. Pracujemy w iteracjach. Pojedyńcze zadanie to kilkanaście minut kodowania.
+** Każdy uczestnik tworzy swoją kopie projektu (fork) i tam pracuje
+2. Zadanie jest dostępne na githubie link:https://github.com/kubamarchwicki/wyzwanie-tdd-kata[]
+** Tworzymy branch, robimy zadanie, tworzymy pull requesta
+3. Codziennie rano przeglądamy podesłane rozwiązania, omawiamy, przygotowujemy referencyjną implementację.
+4. Omawiamy kolejne zadanie i wracamy do punktu **2**
+
+=== Zasady udanej katy
+
+* Pracujemy tylko nad jednym wymaganiem na raz
+* Nie interesuje nas to co będzie w następnych wymaganiach
+* Piszemy tylko tyle kodu ile jest potrzebne by wymaganie zostało spełnione
+* Testujemy tylko pozytywne scenariusze (chyba, że w wymaganiu jest inaczej)
+* Pracujemy zgodnie z zasadmi TDD – Red, Green, Refactor
+
+== Zadanie: String calculator
+
+*Tworzymy kalulator*
+
+. Kalkulator ma być prosty (naiwna implementacja)
+. Dowolna ilość parametrów
+. Liczby oddzielone znakiem (na początek przecinkiem)
+. Wsparcie dla różnych separatorów
+. Dodajemy tylko liczny dodatnie
+. Ograniczamy zakres
+. Separator dowolnej długości
+. Więcej niż jeden separator
+. Więcej niż jeden separator różnej długości
+
+== Zadanie {counter: seq}. Prosty kalkulator
+
+* Utwórz prostą metodę przyjmującą wyrażenie typu String jako parametr.
+* Metoda może przyjmować 0, 1 lub 2 liczby oddzielone przecinkami i zwraca ich sumę (pusty string zwraca 0)
+* *Przykład*: ` ` lub `1` lub `1,2`
+
+Tips::
+- Zacznij od testu dla pustego parametru.
+- Następnie test dla jednego parametru i w następnym kroku dla dwóch.
+- Pamiętaj o tym by rozwiązania, które implementujeszy były jak najprostsze.
+- Po każdym przechodzącym teście pamiętaj o refactoringu.
+
+== Zadanie {counter: seq}. ...
+
+== Credits
+
+Zadanie bazują na projekcie link:http://osherove.com/tdd-kata-1/[TDD Kata by Roy Osherove]
