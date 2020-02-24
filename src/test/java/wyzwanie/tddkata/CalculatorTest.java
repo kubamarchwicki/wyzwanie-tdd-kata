@@ -20,4 +20,30 @@ public class CalculatorTest {
         assertThat(result, equalTo(0));
     }
 
+    @Test
+    public void should_return_5_for_5() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "5";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(5));
+    }
+
+    @Test
+    public void should_return_10_for_46() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "4,6";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(10));
+    }
+
 }

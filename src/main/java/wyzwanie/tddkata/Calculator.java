@@ -2,26 +2,35 @@ package wyzwanie.tddkata;
 
 import java.util.Scanner;
 
+import static java.lang.System.*;
+
 public class Calculator {
 
-    public Integer add(String input) {
+    Integer add(String input) {
+        if (!input.isEmpty()) {
+            String[] array = input.split(",");
+            int sum = 0;
+            for (String s : array) {
+                sum += Integer.valueOf(s);
+            }
+            return sum;
+        }
         return 0;
     }
-
 
     //Do not modify code below this line. This is just a runner
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter calculation. Ctrl+d for exit.");
+        Scanner scanner = new Scanner(in);
+        out.println("Please enter calculation. Ctrl+d for exit.");
 
         Calculator calculator = new Calculator();
-        System.out.print("> ");
+        out.print("> ");
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
-            System.out.println(input + " ==> " + calculator.add(input));
+            out.println(input + " ==> " + calculator.add(input));
 
-            System.out.print("> ");
+            out.print("> ");
         }
 
     }
