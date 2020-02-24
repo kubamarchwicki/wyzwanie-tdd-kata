@@ -1,11 +1,18 @@
 package wyzwanie.tddkata;
 
+
 import java.util.Scanner;
+
 
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        String[] valuesFromInput = input.split(",");
+        Integer output=0;
+        for(String s : valuesFromInput){
+            output+=Integer.valueOf(s);
+        }
+        return output;
     }
 
 
