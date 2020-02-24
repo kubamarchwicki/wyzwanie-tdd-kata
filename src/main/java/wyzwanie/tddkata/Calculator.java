@@ -1,11 +1,24 @@
 package wyzwanie.tddkata;
 
+import com.sun.xml.internal.xsom.impl.scd.Iterators;
+
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        if (input.isEmpty()) {
+            return 0;
+        }
+
+        String[] inputArray = input.split(",");
+        int sum = 0;
+           for (String num : inputArray) {
+               sum += Integer.parseInt(num);
+           }
+           return sum;
     }
 
 
