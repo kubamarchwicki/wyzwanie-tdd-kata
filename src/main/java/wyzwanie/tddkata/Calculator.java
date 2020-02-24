@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        if (input.equals("")) return 0;
+        if (input.isEmpty()) return 0;
 
         String[] splittedInput = input.split(",");
         int[] numbers = new int[splittedInput.length];
