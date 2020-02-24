@@ -1,11 +1,21 @@
 package wyzwanie.tddkata;
 
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        String[] arrayOfGivenNumbers = input.split(",");
+        Integer result = 0;
+        if (!arrayOfGivenNumbers[0].isEmpty()) {
+            Stream<String> stream = Arrays.stream(arrayOfGivenNumbers);
+            result = stream
+                .map(string -> Integer.parseInt(string))
+                .reduce(0, Integer::sum);
+        }
+        return result;
     }
 
 

@@ -7,6 +7,10 @@ classes/
 out/
 path_IS_UNDEFINED/
 .envrc
+.settings/
+bin/
+.classpath
+.project
 
 # Ignore Gradle project-specific cache directory
 .gradle
