@@ -6,11 +6,27 @@ public class Calculator {
 
 
     public Integer add(String input) {
+        String[] inputNumbers = input.split(",");
+
         if (isEmpty(input)){
             return 0;
         }
+        else if (input.length() == 1){
+            return stringToInt(input);
+        }
+        else {
+            return sum(inputNumbers[0], inputNumbers[1]);
+        }
 
-        return Integer.valueOf(input);
+
+    }
+
+    private int sum(String numberOne, String numberTwo){
+        return stringToInt(numberOne) + stringToInt(numberTwo);
+    }
+
+    private int stringToInt(String input){
+        return Integer.parseInt(input);
     }
 
     private boolean isEmpty(String input){

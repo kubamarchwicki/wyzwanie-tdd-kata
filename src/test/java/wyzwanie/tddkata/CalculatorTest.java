@@ -32,15 +32,28 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_provided_string(){
+    public void should_return_provided_numbers(){
         //given
-        String providedString = "3";
+        String providedNumber = "3";
 
         //when
-        Integer result = calculatorUnderTest.add(providedString);
+        Integer result = calculatorUnderTest.add(providedNumber);
 
         //then
         assertThat(result, equalTo(3));
+
+    }
+
+    @Test
+    public void should_return_sum_of_two_numbers_divided_by_comma(){
+        //given
+        String providedTwoNumbersDividedByComma = "2,3";
+
+        //when
+        Integer result = calculatorUnderTest.add(providedTwoNumbersDividedByComma);
+
+        //then
+        assertThat(result, equalTo(5));
 
     }
 
