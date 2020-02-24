@@ -9,6 +9,10 @@ public class Calculator {
 
         if(input.isEmpty())
             return result;
+        else if(input.matches("^[a-zA-Z]*$")){
+            // TODO: Discuss what should be returned in case of letters. Possibly exception
+            return -1;
+        }
         else if(!input.contains(","))
             result += Integer.parseInt(input);
         else {
