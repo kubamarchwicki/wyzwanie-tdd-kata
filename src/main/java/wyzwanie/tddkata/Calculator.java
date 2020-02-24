@@ -5,7 +5,12 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        int result = 0;
+
+        if (!input.isEmpty())
+            result = Integer.parseInt(input);
+
+        return result;
     }
 
 
