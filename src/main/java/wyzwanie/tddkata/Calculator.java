@@ -1,11 +1,20 @@
 package wyzwanie.tddkata;
 
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        if (input == null || input.isEmpty()) {
+            return 0;
+        }
+        StringTokenizer inputStringTokenizer = new StringTokenizer(input, ",");
+        Integer sum = 0;
+        while (inputStringTokenizer.hasMoreTokens()) {
+            sum += Integer.valueOf(inputStringTokenizer.nextToken());
+        }
+        return sum;
     }
 
 
