@@ -22,41 +22,33 @@ public class CalculatorTest {
 
     @Test
     public void should_return_zero_for_empty_string() {
-        //given
-        String emptyString = "";
-
-        //when
-        Integer result = calculatorUnderTest.add(emptyString);
-
-        //then
-        assertThat(result, equalTo(0));
+        this.addMethodTest("", 0);
     }
 
     @Test
-    @Parameters({
-            "1, 1",
-            "15, 15",
-            "999, 999"
-    })
-    public void should_return_the_same_for_one_string_without_separator(
-            String input, Integer expectedResult) {
+    public void should_return_one_for_string_equal_one() {
+        this.addMethodTest("1", 1);
+    }
+
+    @Test
+    public void should_return_ninety_nine_for_string_equal_ninety_nine() {
+        this.addMethodTest("99", 99);
+    }
+
+    @Test
+    public void should_return_three_for_string_equal_one_and_two_with_separator() {
+        this.addMethodTest("1,2", 3);
+    }
+
+    @Test
+    public void should_return_thirty_for_string_equal_five_and_ten_and_fifteen_with_separator() {
+        this.addMethodTest("5,10,15", 30);
+    }
+
+    private void addMethodTest(String input, Integer expectedResult) {
         //when
         Integer actualResult = calculatorUnderTest.add(input);
-
         //then
         assertEquals(expectedResult, actualResult);
     }
-
-    @Test
-    public void should_return_three_when_string_equal_one_and_two() {
-        //given
-        String input = "1,2";
-
-        //when
-        Integer result = calculatorUnderTest.add(input);
-
-        //then
-        assertThat(result, equalTo(3));
-    }
-
 }
