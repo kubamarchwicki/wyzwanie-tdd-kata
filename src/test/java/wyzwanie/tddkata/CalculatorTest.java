@@ -20,4 +20,32 @@ public class CalculatorTest {
         assertThat(result, equalTo(0));
     }
 
+    @Test
+    public void should_return_six_for_123() {
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "1,2,3";
+
+        Integer result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(6));
+    }
+
+    @Test
+    public void should_return_two_for_2() {
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "2";
+
+        Integer result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(2));
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void should_return_throw_when_try_add_negative_number() {
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "2,-5";
+
+        Integer result = calculatorUnderTest.add(input);
+    }
+
 }

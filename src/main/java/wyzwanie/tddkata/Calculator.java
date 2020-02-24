@@ -5,7 +5,20 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        if (input.isEmpty()) {
+            return 0;
+        }
+            String[] p = input.split(",");
+            int result = 0;
+            int[] ans = new int[p.length];
+            for (int i = 0; i < p.length; i++) {
+                ans[i] = Integer.parseInt(p[i]);
+                if (ans[i] < 0) {
+                    throw new NumberFormatException("ujemna wartość");
+                } else
+                    result += ans[i];
+            }
+            return result;
     }
 
 
