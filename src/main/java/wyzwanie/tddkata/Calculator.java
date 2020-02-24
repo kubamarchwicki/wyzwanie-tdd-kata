@@ -5,7 +5,14 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        int result = 0;
+        if (input == null || input.length() == 0)
+            return result;
+
+        for (String element : input.split(",")) {
+            result += Integer.parseInt(element);
+        }
+        return result;
     }
 
 
