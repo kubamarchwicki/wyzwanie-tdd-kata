@@ -31,7 +31,7 @@ public class CalculatorTest {
     Integer result = calculatorUnderTest.add(parameter);
 
     //then
-    assertThat(1, equalTo(result));
+    assertThat(result, equalTo(1));
   }
 
   @Test
@@ -45,7 +45,7 @@ public class CalculatorTest {
     Integer result = calculatorUnderTest.add(parameter);
 
     //then
-    assertThat(0, equalTo(result));
+    assertThat(result, equalTo(0));
   }
 
   @Test
@@ -59,7 +59,7 @@ public class CalculatorTest {
     Integer result = calculatorUnderTest.add(parameter);
 
     //then
-    assertThat(0, equalTo(result));
+    assertThat(result, equalTo(0));
   }
 
   @Test
@@ -73,20 +73,49 @@ public class CalculatorTest {
     Integer result = calculatorUnderTest.add(parameter);
 
     //then
-    assertThat(3, equalTo(result));
+    assertThat(result, equalTo(3));
   }
 
-    @Test
-    public void should_return_six_when_123_given() {
-        // given
+  @Test
+  public void should_return_six_when_123_given() {
+    // given
 
-        Calculator calculatorUnderTest = new Calculator();
-        String parameter = "1,2,3";
+    Calculator calculatorUnderTest = new Calculator();
+    String parameter = "1,2,3";
 
-        // when
-        Integer result = calculatorUnderTest.add(parameter);
+    // when
+    Integer result = calculatorUnderTest.add(parameter);
 
-        //then
-        assertThat(6, equalTo(result));
-    }
+    //then
+    assertThat(result, equalTo(6));
+  }
+
+  @Test
+  public void should_accept_line_breaks_beetween_three_parameters() {
+    // given
+
+    Calculator calculatorUnderTest = new Calculator();
+    String parameter = "1\n2,3";
+
+    // when
+    Integer result = calculatorUnderTest.add(parameter);
+
+    //then
+    assertThat(result, equalTo(6));
+
+  }
+  @Test
+  public void should_accept_line_breaks_beetween_two_parameters() {
+    // given
+
+    Calculator calculatorUnderTest = new Calculator();
+    String parameter = "1\n7";
+
+    // when
+    Integer result = calculatorUnderTest.add(parameter);
+
+    //then
+    assertThat(result, equalTo(8));
+
+  }
 }

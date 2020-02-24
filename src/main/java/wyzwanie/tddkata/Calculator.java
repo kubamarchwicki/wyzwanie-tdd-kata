@@ -5,20 +5,25 @@ import java.util.Scanner;
 public class Calculator {
 
   public Integer add(String input) {
-    if (input.isBlank() || input.isEmpty()) {
+
+    InputChecker inputChecker = new InputChecker();
+
+    if (input == null || input.isEmpty()) {
       return 0;
     }
-    if (input.length() == 1) {
-      return Integer.parseInt(input);
-    } else {
-      String[] inputParameters = input.split(",");
+
+    if (inputChecker.hasNumbersOnly(input)) {
+      String[] inputArray = inputChecker.replaceSeparatorsWithComma(input);
       int result = 0;
 
-      for (String inputParameter : inputParameters) {
-        result += Integer.parseInt(inputParameter);
+      for (String number : inputArray) {
+        result += Integer.parseInt(number);
       }
-        return result;
+
+      return result;
     }
+
+    return 0;
   }
 
   //Do not modify code below this line. This is just a runner
