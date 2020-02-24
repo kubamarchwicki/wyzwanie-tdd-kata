@@ -1,0 +1,16 @@
+build/
+*.iml
+.idea
+.gradle/
+log/
+classes/
+out/
+path_IS_UNDEFINED/
+.envrc
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle and Maven build output directory
+build
+target/
