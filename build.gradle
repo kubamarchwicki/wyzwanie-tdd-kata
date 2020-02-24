@@ -12,6 +12,9 @@ repositories {
 dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    // https://mvnrepository.com/artifact/pl.pragmatists/JUnitParams
+    testCompile group: 'pl.pragmatists', name: 'JUnitParams', version: '1.0.4'
+
 }
 
 task exec(type: JavaExec) {
