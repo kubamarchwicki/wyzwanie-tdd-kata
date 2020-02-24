@@ -9,7 +9,9 @@ public class Calculator {
     public Integer add(String input) {
         String[] valuesFromInput = input.split(",");
         Integer output=0;
+
         for(String s : valuesFromInput){
+            if(!s.equals(""))
             output+=Integer.valueOf(s);
         }
         return output;
