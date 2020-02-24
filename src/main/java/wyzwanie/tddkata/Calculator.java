@@ -1,10 +1,26 @@
 package wyzwanie.tddkata;
 
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Calculator {
 
+    private String SEPARATOR = ",";
+
     public Integer add(String input) {
+        if (input != null) {
+            String[] inputToArray = input.split(SEPARATOR);
+            int[] inputToIntArray = new int[inputToArray.length];
+            for (int i = 0; i < inputToArray.length; i++) {
+                try {
+                    inputToIntArray[i] = Integer.parseInt(inputToArray[i].trim());
+                }catch(NumberFormatException e){
+                    System.out.println("Not a number");
+                }
+            }
+            return IntStream.of(inputToIntArray).sum();
+
+        }
         return 0;
     }
 
