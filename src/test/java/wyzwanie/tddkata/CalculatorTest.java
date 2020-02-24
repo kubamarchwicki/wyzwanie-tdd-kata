@@ -13,7 +13,7 @@ public class CalculatorTest {
         String emptyString = "";
 
         //when
-        Integer result = calculatorUnderTest.add(emptyString);
+        int result = calculatorUnderTest.add(emptyString);
 
         //then
         assertThat(result).isEqualTo(0);
@@ -26,9 +26,22 @@ public class CalculatorTest {
         String one = "1";
 
         //when
-        Integer result = calculatorUnderTest.add(one);
+        int result = calculatorUnderTest.add(one);
 
         //then
         assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    public void should_return_3_for_12_string() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String one = "1,2";
+
+        //when
+        int result = calculatorUnderTest.add(one);
+
+        //then
+        assertThat(result).isEqualTo(3);
     }
 }

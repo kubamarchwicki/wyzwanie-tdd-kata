@@ -10,7 +10,13 @@ public class Calculator {
             return 0;
         }
 
-        return Integer.valueOf(input);
+        int sum = 0;
+
+        for (String element : input.split(",")) {
+            sum += Integer.parseInt(element);
+        }
+
+        return sum;
     }
 
     //Do not modify code below this line. This is just a runner
