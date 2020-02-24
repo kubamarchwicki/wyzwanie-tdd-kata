@@ -7,8 +7,11 @@ public class Calculator {
     public Integer add(String input) {
         int result = 0;
 
-        if (!input.isEmpty())
+        if(input.isEmpty())
+            return result;
+        else if(!input.contains(","))
             result = Integer.parseInt(input);
+
 
         return result;
     }
