@@ -1,13 +1,18 @@
 package wyzwanie.tddkata;
 
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Calculator {
 
-    public Integer add(String input) {
-        return 0;
-    }
+    private static final String SEPARATORS = "[,]";
 
+    public Integer add(String input) {
+        return input.isEmpty() ? 0 :
+                Stream.of(input.split(SEPARATORS))
+                        .mapToInt(num -> Integer.parseInt(num.trim()))
+                        .sum();
+    }
 
     //Do not modify code below this line. This is just a runner
 
