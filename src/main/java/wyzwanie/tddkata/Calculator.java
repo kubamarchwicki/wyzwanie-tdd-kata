@@ -5,7 +5,16 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        if (input=="") {
+            return 0;
+        } else {
+            String[] inputs = input.split("\\W+");
+            int result = Integer.parseInt(inputs[0]);
+            for (int i=1;i<inputs.length;i++){
+                result+=Integer.parseInt(inputs[i]);
+            }
+            return result;
+        }
     }
 
 
