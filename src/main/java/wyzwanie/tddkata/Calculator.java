@@ -5,7 +5,15 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+
+        final String COMMA_SIGN = ",";
+        String [] splitNumbers = input.split(COMMA_SIGN);
+
+        Integer sum = 0;
+        for (int i = 0; i < splitNumbers.length; i++) {
+            sum += Integer.valueOf(splitNumbers[i]);
+        }
+        return sum;
     }
 
 
