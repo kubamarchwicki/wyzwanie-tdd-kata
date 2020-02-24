@@ -1,11 +1,16 @@
 package wyzwanie.tddkata;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+@RunWith(JUnitParamsRunner.class)
 public class CalculatorTest {
 
     Calculator calculatorUnderTest;
@@ -28,14 +33,17 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_one_for_string_equal_one() {
-        //given
-        String input = "1";
-
+    @Parameters({
+            "1, 1",
+            "15, 15",
+            "999, 999"
+    })
+    public void should_return_the_same_for_one_string_without_separator(
+            String input, Integer expectedResult) {
         //when
-        Integer result = calculatorUnderTest.add(input);
+        Integer actualResult = calculatorUnderTest.add(input);
 
         //then
-        assertThat(result, equalTo(1));
+        assertEquals(expectedResult, actualResult);
     }
 }
