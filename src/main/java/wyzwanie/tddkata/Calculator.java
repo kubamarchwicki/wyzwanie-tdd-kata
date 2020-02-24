@@ -11,7 +11,11 @@ public class Calculator {
             return result;
         else if(!input.contains(","))
             result += Integer.parseInt(input);
-
+        else {
+            String [] inputArr = input.split(",");
+            for ( String s: inputArr )
+                result += Integer.parseInt(s);
+        }
 
         return result;
     }
