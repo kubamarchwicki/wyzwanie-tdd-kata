@@ -10,7 +10,7 @@ public class Calculator {
         if(input.isEmpty())
             return result;
         else if(!input.contains(","))
-            result = Integer.parseInt(input);
+            result += Integer.parseInt(input);
 
 
         return result;
