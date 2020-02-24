@@ -20,4 +20,26 @@ public class CalculatorTest {
         assertThat(result, equalTo(0));
     }
 
+    @Test
+    public void should_return_6_for_123(){
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "123";
+
+        Integer result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(6));
+    }
+
+    @Test
+    public void should_return_6_for_123_with_commas(){
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "12,3";
+
+        Integer result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(6));
+    }
+
+
+
 }

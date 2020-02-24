@@ -5,7 +5,14 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+
+        int sum = 0;
+        String[] splitedStringArray = input.split("\\D|\\B");
+        for (String num : splitedStringArray) {
+            sum += Integer.parseInt(num);
+        }
+
+        return sum;
     }
 
 
