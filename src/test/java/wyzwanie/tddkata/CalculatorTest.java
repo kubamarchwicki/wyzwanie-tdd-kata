@@ -28,4 +28,13 @@ public class CalculatorTest {
 
         assertThat(result, equalTo(2));
     }
+    @Test
+    public void should_return_five_for_23(){
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "2,3";
+
+        Integer result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(5));
+    }
 }
