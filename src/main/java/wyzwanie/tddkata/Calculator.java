@@ -5,9 +5,13 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
-    }
 
+        if (input.isEmpty()) {
+            return 0;
+        }
+
+        return Integer.valueOf(input);
+    }
 
     //Do not modify code below this line. This is just a runner
 
@@ -23,6 +27,5 @@ public class Calculator {
 
             System.out.print("> ");
         }
-
     }
 }

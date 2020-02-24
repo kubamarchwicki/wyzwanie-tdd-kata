@@ -19,4 +19,16 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(0);
     }
 
+    @Test
+    public void should_return_one_for_1_string() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String one = "1";
+
+        //when
+        Integer result = calculatorUnderTest.add(one);
+
+        //then
+        assertThat(result).isEqualTo(1);
+    }
 }
