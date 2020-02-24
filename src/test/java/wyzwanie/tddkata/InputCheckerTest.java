@@ -94,6 +94,17 @@ public class InputCheckerTest {
 
   }
 
+  @Test
+  public void should_replace_colon_with_comma_and_whitespace() {
+    String inputNumber = "1 : 2 ";
+
+    InputChecker inputCheckerUnderTest = new InputChecker();
+    String[] result = inputCheckerUnderTest.replaceSeparatorsWithComma(inputNumber);
+
+    assertArrayEquals(new String[]{"1", "2"}, result);
+
+  }
+
 
   @Test
   public void should_replace_mixed_separator_with_comma() {

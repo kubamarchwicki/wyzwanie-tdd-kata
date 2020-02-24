@@ -118,4 +118,18 @@ public class CalculatorTest {
     assertThat(result, equalTo(8));
 
   }
+  @Test
+  public void should_accept_space_after_comma() {
+    // given
+
+    Calculator calculatorUnderTest = new Calculator();
+    String parameter = "1, 2, 3";
+
+    // when
+    Integer result = calculatorUnderTest.add(parameter);
+
+    //then
+    assertThat(result, equalTo(6));
+
+  }
 }
