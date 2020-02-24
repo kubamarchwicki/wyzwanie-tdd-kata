@@ -1,5 +1,6 @@
 package wyzwanie.tddkata;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
@@ -9,7 +10,10 @@ public class Calculator {
             return 0;
         }
 
-        return Integer.parseInt(input);
+        String[] inputArray = input.split(",");
+
+        return Arrays.stream(inputArray)
+                .mapToInt(Integer::parseInt).sum();
     }
 
 
