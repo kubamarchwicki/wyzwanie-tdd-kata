@@ -27,4 +27,15 @@ public class CalculatorTest {
         assertThat(result, equalTo(0));
     }
 
+    @Test
+    public void should_return_one_for_string_equal_one() {
+        //given
+        String input = "1";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(1));
+    }
 }
