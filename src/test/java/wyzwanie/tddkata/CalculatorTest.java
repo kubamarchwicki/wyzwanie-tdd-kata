@@ -118,6 +118,14 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(20));
     }
+    @Test(expected = Exception.class)
+    public void should_return_error_when_no_new_delimeter_defined_but_default_not_used(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "2;3;4;5;6";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+    }
     @Test
     public void should_sum_all_numbers_when_new_delimeter_defined(){
         Calculator calculatorUnderTest = new Calculator();
@@ -145,5 +153,14 @@ public class CalculatorTest {
         //when
         Integer result = calculatorUnderTest.add(multipleInput);
     }
+    @Test
+    public void should_sum_all_numbers_when_new_delimeter_not_correctly_defined_and_default_used(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "/;]\n2,3,4,5,6";
 
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        assertThat(result,equalTo(20));
+    }
 }

@@ -14,8 +14,12 @@ public class Calculator {
         String delimeter = ",";
 
         if (isNewDelimeterDefined(splittedInput)){
-         delimeter = extractDelimeter(splittedInput[0]);
-         input = splittedInput[1];
+         if (isDelimeterDeclaredCorrectly(splittedInput[0])){
+             delimeter = extractDelimeter(splittedInput[0]);
+             input = splittedInput[1];
+         }else {
+             input = splittedInput[1];
+         }
         }
 
         if (!Calculator.isNumeric(input) && !input.contains(delimeter)) {
@@ -42,7 +46,7 @@ public class Calculator {
     }
 
     private boolean isNewDelimeterDefined(String[] splittedInput){
-        return splittedInput.length == 2 && isDelimeterDeclaredCorrectly(splittedInput[0]);
+        return splittedInput.length == 2;
 
     }
     private boolean isDelimeterDeclaredCorrectly(String delimeterDeclaration){
