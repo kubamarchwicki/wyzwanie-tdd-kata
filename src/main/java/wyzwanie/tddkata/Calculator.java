@@ -1,17 +1,46 @@
 package wyzwanie.tddkata;
 
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Calculator {
 
+//    public Integer add(String input) {
+//        Integer sum = 0;
+//        for (int i = 0; i < input.length(); i++) {
+//            if (Character.isDigit(input.charAt(i))) {
+//                sum += Character.getNumericValue(input.charAt(i));
+//            }
+//        }
+//        return sum;
+//    }
+
     public Integer add(String input) {
-        Integer sum = 0;
-        for (int i = 0; i < input.length(); i++) {
-            if (Character.isDigit(input.charAt(i))) {
-                sum += Character.getNumericValue(input.charAt(i));
-            }
+        if (Objects.isNull(input) || input.isEmpty()) {
+            return 0;
         }
-        return sum;
+
+        if (!Calculator.isNumeric(input) && !input.contains(",")) {
+            throw new RuntimeException("Delimiter [,] not found");
+        }
+
+        return Stream.of(input.split(","))
+                .filter(Calculator::isNumeric)
+                .mapToInt(Integer::valueOf)
+                .sum();
+    }
+
+    static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
     //Do not modify code below this line. This is just a runner

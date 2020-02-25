@@ -22,7 +22,7 @@ public class CalculatorTest {
     @Test
     public void should_return_zero_for_null_input(){
         //given
-        String input = "null";
+        String input = null;
         //when
         Integer result = calculatorUnderTest.add(input);
         //then
@@ -107,7 +107,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void sholud_ignore_non_number_input_and_sum_only_numbers(){
+    public void should_ignore_non_number_input_and_sum_only_numbers(){
         //given
         String input = "a,2,1";
 
