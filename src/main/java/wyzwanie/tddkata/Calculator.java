@@ -7,18 +7,21 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
+        String[] inputs;
+        int result = 0;
 
-        if (input==null || input.isEmpty()) {
+        if (input == null || input.isEmpty()) {
             return 0;
         } else {
-            String[] inputs = input.split("\\W+");
-            int result=0;
-
-           for (int i=0;i<inputs.length;i++){
-               if (isNumeric(inputs[i])){
-                   System.out.println(inputs[i]);
-                   result+=Integer.parseInt(inputs[i]);
-               }
+            if (input.startsWith("//[")) {
+                input = input.substring(7);
+            }
+            inputs = input.split("\\W+");
+            for (int i = 0; i < inputs.length; i++) {
+                if (isNumeric(inputs[i])) {
+                    System.out.println(inputs[i]);
+                    result += Integer.parseInt(inputs[i]);
+                }
             }
             return result;
         }
