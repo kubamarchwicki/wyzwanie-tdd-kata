@@ -10,15 +10,22 @@ public class Calculator {
         if (Objects.isNull(input) || input.isEmpty()) {
             return 0;
         }
+        String[] splittedInput = input.split("\n");
+        String delimeter = ",";
 
-        if (!Calculator.isNumeric(input) && !input.contains(",")) {
-            throw new RuntimeException("Delimiter [,] not found");
+        if (isNewDelimeterDefined(splittedInput)){
+         delimeter = extractDelimeter(splittedInput[0]);
+         input = splittedInput[1];
         }
 
-        return Stream.of(input.split(","))
+        if (!Calculator.isNumeric(input) && !input.contains(delimeter)) {
+            throw new RuntimeException("Delimiter ["+delimeter+"] not found");
+        }
+
+        return Stream.of(input.split(delimeter))
                 .filter(Calculator::isNumeric)
                 .mapToInt(Integer::valueOf)
-                .limit(2)
+                //.limit(2)
                 .sum();
     }
 
@@ -32,6 +39,17 @@ public class Calculator {
             return false;
         }
         return true;
+    }
+
+    private boolean isNewDelimeterDefined(String[] splittedInput){
+        return splittedInput.length == 2 && isDelimeterDeclaredCorrectly(splittedInput[0]);
+
+    }
+    private boolean isDelimeterDeclaredCorrectly(String delimeterDeclaration){
+        return delimeterDeclaration.matches("//\\[.+\\]");
+    }
+    private String extractDelimeter(String line){
+       return line.replaceAll("[/\\[\\]]","");
     }
 
     //Do not modify code below this line. This is just a runner
