@@ -1,5 +1,6 @@
 package wyzwanie.tddkata;
 
+
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -72,6 +73,20 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
+
+    @Test
+    public void should_ignore_non_numbers_and_sum_rest1() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "aaa,3";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(3));
+    }
+
     @Test(expected = Exception.class)
     public void should_return_error_when_no_comma_as_delimeter() {
         //given
@@ -80,6 +95,19 @@ public class CalculatorTest {
 
         //when
         Integer result = calculatorUnderTest.add(input);
+    }
+
+    @Test
+    public void should_return_sum_when_no_comma_as_delimeter() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[;]\n1;2";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(3));
     }
 
     @Test
@@ -95,17 +123,5 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
-    @Test
-    public void should_sum_only_first_two_numbers() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "2,3,4";
-
-        //when
-        Integer result = calculatorUnderTest.add(multipleInput);
-
-        //then
-        assertThat(result, equalTo(5));
-    }
 
 }
