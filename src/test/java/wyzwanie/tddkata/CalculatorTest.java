@@ -95,7 +95,10 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
-    @Test
+    /**
+     * The test is a candidate to be deleted as task 2 introduces multiple parameters, to sum.
+     */
+    //@Test
     public void should_sum_only_first_two_numbers() {
         //given
         Calculator calculatorUnderTest = new Calculator();
@@ -135,6 +138,36 @@ public class CalculatorTest {
         int result = calculatorUnderTest.add(input);
 
         assertThat(result, equalTo(3));
+    }
+
+    @Test
+    public void should_return_3_for_provided_input() {
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[;]\n1;2";
+
+        int result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(3));
+    }
+
+    @Test
+    public void should_return_15_for_provided_input() {
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "1,2,3,4,5";
+
+        int result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(15));
+    }
+
+    @Test
+    public void should_return_for_provided_multipla_input() {
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "1,2,3,4,5,6,7,8,9,10";
+
+        int result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(55));
     }
 
 }
