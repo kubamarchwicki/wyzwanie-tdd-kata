@@ -180,4 +180,70 @@ public class CalculatorTest {
         assertThat(result, equalTo(9));
     }
 
+    @Test
+    public void should_return_one_for_dot_delimiter_and_one() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[.]\n1";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(1));
+    }
+
+    @Test
+    public void should_return_four_for_a_delimiter_and_four_a() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[a]\n4a";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(4));
+    }
+
+
+    @Test
+    public void should_return_twelve_for_semicolon_delimiter_and_three_semicolon_nine() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[;]\n3;9";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(12));
+    }
+
+    @Test
+    public void should_return_six_for_3_delimiter_and_four_3_two() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[3]\n432";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(6));
+    }
+
+    @Test
+    public void should_return_fifteen_for_comma_delimiter_and_five_comma_ten() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[,]\n5,10";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(15));
+    }
+
 }
