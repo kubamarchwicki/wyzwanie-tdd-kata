@@ -3,7 +3,9 @@ package wyzwanie.tddkata;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class CalculatorTest {
 
@@ -107,5 +109,50 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(5));
     }
+    @Test
+    public void multiple_numbers(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "0,3,5,2";
 
-}
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(10));
+
+    }
+    @Test
+    public void change_delimery(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[!@#$%&*()_+=|<>?{}\\[\\]~-]\n5-!4*5,";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(14));
+    }
+    @Test
+    public void error_when_mentioned_delimery_doesnt_exist() {
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[b]\n4*5,";
+        String [] separator = multipleInput.split("\n");
+         //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+        //then
+        assertFalse(separator[1].contains("b"));
+    }
+    @Test
+    public void error_when_delimery_syntax_has_missing_slash(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "/[b]\n4*5,";
+        String [] separator = multipleInput.split("\n");
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+        //then
+        assertFalse(separator[0].contains("//[b]"));
+    }
+
+    }
+
+
