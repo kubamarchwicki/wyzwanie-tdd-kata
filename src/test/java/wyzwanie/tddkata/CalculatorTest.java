@@ -161,9 +161,19 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_for_provided_multipla_input() {
+    public void should_return_55_for_provided_multipla_input() {
         Calculator calculatorUnderTest = new Calculator();
         String input = "1,2,3,4,5,6,7,8,9,10";
+
+        int result = calculatorUnderTest.add(input);
+
+        assertThat(result, equalTo(55));
+    }
+
+    @Test
+    public void should_return_55_for_longSeparator() {
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[longSeparator]\n1longSeparator2longSeparator3longSeparator4longSeparator5longSeparator6longSeparator7longSeparator8longSeparator9longSeparator10";
 
         int result = calculatorUnderTest.add(input);
 
