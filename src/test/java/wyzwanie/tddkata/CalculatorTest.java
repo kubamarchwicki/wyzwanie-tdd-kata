@@ -12,10 +12,10 @@ public class CalculatorTest {
     public void should_return_zero_for_empty_string() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String emptyString = "";
+        String input = "";
 
         //when
-        Integer result = calculatorUnderTest.add(emptyString);
+        Integer result = calculatorUnderTest.add(input);
 
         //then
         assertThat(result, equalTo(0));
@@ -104,6 +104,7 @@ public class CalculatorTest {
         //then
         assertThat(result,equalTo(45));
     }
+
     @Test
     public void should_return_zero_for_null_input() {
         //given
@@ -178,4 +179,19 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(3));
     }
+
+    @Test
+    public void should_sum_only_first_two_numbers() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "2,3,4";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(5));
+    }
+
+
 }
