@@ -6,36 +6,61 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    public Integer add(String input) {
-        if (Objects.isNull(input) || input.isEmpty()){
+    Integer add(String input) {
+        if (Objects.isNull(input) || input.isEmpty()) {
             return 0;
         }
 
-        if (!isDigit(input) && !containsComa(input)){
-            throw new IllegalArgumentException();
-        }
+        String delimiter = getDelimiter(input);
+        String content = getContent(input, delimiter);
 
-        return Arrays.stream(input.split(","))
-                .mapToInt(this::mapIgnoringNonNumbers)
-                .limit(2)
+        return sum(content.split(delimiter));
+    }
+
+    private String getDelimiter(String input) {
+        if (input.contains("\n")) {
+            String[] lines = input.split("\n");
+
+            validateDelimiterDeclaration(lines);
+
+            return lines[0].substring(3, 4);
+        } else {
+            return ",";
+        }
+    }
+
+    private void validateDelimiterDeclaration(String[] lines) {
+        if (!lines[0].matches("//\\[.]")) {
+            throw new IllegalArgumentException("Malformed delimiter declaration!");
+        }
+    }
+
+    private String getContent(String input, String delimiter) {
+        if (input.contains("\n")) {
+            String[] lines = input.split("\n");
+
+            validateContent(lines[1], delimiter);
+
+            return lines[1];
+        } else {
+            validateContent(input, delimiter);
+
+            return input;
+        }
+    }
+
+    private void validateContent(String input, String delimiter) {
+        if (!input.matches("^[-]?\\d+(" + delimiter + "[-]?\\d+)*$")) {
+            throw new IllegalArgumentException("Malformed content!");
+        }
+    }
+
+    private int sum(String[] input) {
+        return Arrays.stream(input)
+                .mapToInt(Integer::valueOf)
                 .sum();
     }
 
-    private boolean isDigit(String input) {
-        return input.matches("\\d+");
-    }
-
-    private boolean containsComa(String input) {
-        return input.contains(",");
-    }
-
-    private int mapIgnoringNonNumbers(String element) {
-        if (isDigit(element)){
-            return Integer.parseInt(element);
-        } else {
-            return 0;
-        }
-    }
 
     //Do not modify code below this line. This is just a runner
 

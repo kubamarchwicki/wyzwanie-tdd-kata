@@ -59,19 +59,6 @@ public class CalculatorTest {
         assertThat(result, equalTo(18));
     }
 
-    @Test
-    public void should_ignore_non_numbers_and_sum_rest() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String input = "a,3";
-
-        //when
-        Integer result = calculatorUnderTest.add(input);
-
-        //then
-        assertThat(result, equalTo(3));
-    }
-
     @Test(expected = Exception.class)
     public void should_return_error_when_no_comma_as_delimeter() {
         //given
@@ -83,29 +70,71 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_three_for_comma_at_end() {
+    public void should_sum_first_ten_numbers() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String threeComma = "3,";
-
-        //when
-        Integer result = calculatorUnderTest.add(threeComma);
-
-        //then
-        assertThat(result, equalTo(3));
-    }
-
-    @Test
-    public void should_sum_only_first_two_numbers() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "2,3,4";
+        String multipleInput = "1,2,3,4,5,6,7,8,9,10";
 
         //when
         Integer result = calculatorUnderTest.add(multipleInput);
 
         //then
-        assertThat(result, equalTo(5));
+        assertThat(result, equalTo(55));
     }
 
+    @Test
+    public void should_sum_numbers_with_semicolon_as_delimiter() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[;]\n1;2;3;4;5";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(15));
+    }
+
+    @Test
+    public void should_sum_numbers_with_colon_as_delimiter() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[:]\n1:2:3:4:5";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(15));
+    }
+
+    @Test(expected = Exception.class)
+    public void should_throw_exception_if_delimiters_do_not_match() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[;]\n1:2:3:4:5";
+
+        //when
+        calculatorUnderTest.add(multipleInput);
+    }
+
+    @Test(expected = Exception.class)
+    public void should_throw_exception_if_delimiter_declaration_is_malformed() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "!@$;]\n1:2:3:4:5";
+
+        //when
+        calculatorUnderTest.add(multipleInput);
+    }
+
+    @Test(expected = Exception.class)
+    public void should_throw_exception_if_delimiter_content_is_malformed() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[;]\n1::2:3:4:5";
+
+        //when
+        calculatorUnderTest.add(multipleInput);
+    }
 }
