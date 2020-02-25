@@ -55,7 +55,13 @@ Tips::
 - Pamiętaj o tym by rozwiązania, które implementujeszy były jak najprostsze.
 - Po każdym przechodzącym teście pamiętaj o refactoringu.
 
-== Zadanie {counter: seq}. ...
+== Zadanie {counter: seq}. Dowolna ilość parametrów i różne separatory
+
+* Spraw by kalkulator przyjmował dowolną ilość parametrów i zwracał ich sumę.
+* Aby zmienić separator na inny niż domyślny należy podać w parametrach wejściowych nowy separator w poniższy sposób: `//[delimiter]\n[numbers...]`
+** Pierwsza linia z separatorem jest opcjonalna
+** Poprzednia funkcjonalność powinna działać bez zmian.
+** *Przykład*: `//[;]\n1;2` powinno zwrócić `3`
 
 == Credits
 
