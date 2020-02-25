@@ -6,13 +6,16 @@ public class Calculator {
 
     public Integer add(String input) {
 
-        int sum = 0;
-        String[] splitedStringArray = input.split("\\D|\\B");
-        for (String num : splitedStringArray) {
-            sum += Integer.parseInt(num);
+        int result = 0;
+        if(input == null || input.length() == 0){
+            return result;
         }
 
-        return sum;
+        String[] splitedStringArray = input.split(",");
+        for (String num : splitedStringArray) {
+            result += Integer.parseInt(num);
+        }
+        return result;
     }
 
 

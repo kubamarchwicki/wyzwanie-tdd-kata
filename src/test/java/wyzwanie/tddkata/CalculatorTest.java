@@ -27,7 +27,7 @@ public class CalculatorTest {
 
         Integer result = calculatorUnderTest.add(input);
 
-        assertThat(result, equalTo(6));
+        assertThat(result, equalTo(123));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class CalculatorTest {
 
         Integer result = calculatorUnderTest.add(input);
 
-        assertThat(result, equalTo(6));
+        assertThat(result, equalTo(15));
     }
 
 
