@@ -129,25 +129,21 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(20));
     }
-    @Test
-    public void should_return_zero_when_defined_delimeter_differs_from_used(){
+    @Test(expected = Exception.class)
+    public void should_return_error_when_defined_delimeter_differs_from_used(){
         Calculator calculatorUnderTest = new Calculator();
         String multipleInput = "//[x]\n2;3;4;5;6";
 
         //when
         Integer result = calculatorUnderTest.add(multipleInput);
-
-        assertThat(result, equalTo(0));
     }
-    @Test
-    public void should_return_zero_when_delimeter_is_not_correctly_defined(){
+    @Test(expected = Exception.class)
+    public void should_return_error_when_delimeter_is_not_correctly_defined(){
         Calculator calculatorUnderTest = new Calculator();
         String multipleInput = "/;]\n2;3;4;5;6";
 
         //when
         Integer result = calculatorUnderTest.add(multipleInput);
-
-        assertThat(result, equalTo(0));
     }
 
 }
