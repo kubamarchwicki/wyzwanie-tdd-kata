@@ -5,11 +5,17 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        String s = input.trim()
+                .replace(",", "")
+                .replace(" ", "");
+        int result = 0;
+        for (int j = 0; j < s.length(); j++) {
+            result += Integer.parseInt(s.substring(j, j + 1));
+        }
+        return result;
     }
 
-
-    //Do not modify code below this line. This is just a runner
+    //Do not modify code below this line. This is just a runner.
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
