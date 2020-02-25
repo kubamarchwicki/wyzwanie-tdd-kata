@@ -107,4 +107,47 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(5));
     }
+    @Test
+    public void should_sum_all_numbers_when_default_delimeter_used(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "2,3,4,5,6";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(20));
+    }
+    @Test
+    public void should_sum_all_numbers_when_new_delimeter_defined(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[a]\n2a3a4a5a6";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(20));
+    }
+    @Test
+    public void should_return_zero_when_defined_delimeter_differs_from_used(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[x]\n2;3;4;5;6";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        assertThat(result, equalTo(0));
+    }
+    @Test
+    public void should_return_zero_when_delimeter_is_not_correctly_defined(){
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "/;]\n2;3;4;5;6";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        assertThat(result, equalTo(0));
+    }
+
 }
