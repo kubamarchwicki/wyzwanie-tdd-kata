@@ -5,9 +5,22 @@ import java.util.Scanner;
 public class Calculator {
 
     public Integer add(String input) {
-        return 0;
+        CalculatorInput calculatorInput = new CalculatorInput(input);
+        return calculatorInput.getNumbers()
+                .stream()
+                .filter(this::isNumeric)
+                .mapToInt(num -> Integer.parseInt(num.trim()))
+                .sum();
     }
 
+    private boolean isNumeric(String num) {
+        try {
+            Integer.parseInt(num);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     //Do not modify code below this line. This is just a runner
 

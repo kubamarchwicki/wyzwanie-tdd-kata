@@ -96,16 +96,16 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_only_first_two_numbers() {
-        //given
+    public void should_return_ten_with_custom_separator() {
+        // given
         Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "2,3,4";
+        String inputString = "\\[.]\n1.5.4";
 
-        //when
-        Integer result = calculatorUnderTest.add(multipleInput);
+        // when
+        Integer result = calculatorUnderTest.add(inputString);
 
-        //then
-        assertThat(result, equalTo(5));
+        // then
+        assertThat(result, equalTo(10));
     }
 
 }
