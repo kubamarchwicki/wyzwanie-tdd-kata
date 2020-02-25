@@ -22,7 +22,6 @@ public class CalculatorTest {
         assertThat(result, equalTo(0));
     }
 
-<<<<<<< HEAD
 
     @Test
     public void should_return_five_for_string_5() {
@@ -103,36 +102,8 @@ public class CalculatorTest {
     }
 
 
-    @Test
-    public void should_not_return_five_for_string_five() {
-        // TODO: Need consulting about the output
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String fiveString = "five";
-
-        //when
-        Integer result = calculatorUnderTest.add(fiveString);
-
-        //then
-        assertThat(result, not(5));
-    }
-
-    @Test
-    public void should_return_three_for_comma_at_end() {
-        // TODO: Need consulting about the output
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String threeComma = "3,";
-
-        //when
-        Integer result = calculatorUnderTest.add(threeComma);
-
-        //then
-        assertThat(result, equalTo(3));
-    }
 
 
-=======
     @Test
     public void should_return_zero_for_null_input() {
         //given
@@ -147,29 +118,17 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_self_for_a_single_number() {
+    public void should_not_return_five_for_string_five() {
+        // TODO: Need consulting about the output
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String input = "42";
+        String fiveString = "five";
 
         //when
-        Integer result = calculatorUnderTest.add(input);
+        Integer result = calculatorUnderTest.add(fiveString);
 
         //then
-        assertThat(result, equalTo(42));
-    }
-
-    @Test
-    public void should_return_sum_for_two_numbers() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String input = "7,11";
-
-        //when
-        Integer result = calculatorUnderTest.add(input);
-
-        //then
-        assertThat(result, equalTo(18));
+        assertThat(result, not(5));
     }
 
     @Test
@@ -209,7 +168,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_only_first_two_numbers() {
+    public void should_sum_all_numbers() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String multipleInput = "2,3,4";
@@ -218,8 +177,7 @@ public class CalculatorTest {
         Integer result = calculatorUnderTest.add(multipleInput);
 
         //then
-        assertThat(result, equalTo(5));
+        assertThat(result, equalTo(9));
     }
 
->>>>>>> ba67f0fbebe8db405ad03ce9007ed67b2d27fc58
 }
