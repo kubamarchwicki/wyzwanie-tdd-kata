@@ -72,7 +72,7 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = IllegalArgumentException.class)
     public void should_return_error_when_no_comma_as_delimeter() {
         //given
         Calculator calculatorUnderTest = new Calculator();
@@ -96,7 +96,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_only_first_two_numbers() {
+    public void should_sum_all_numbers() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String multipleInput = "2,3,4";
@@ -105,7 +105,33 @@ public class CalculatorTest {
         Integer result = calculatorUnderTest.add(multipleInput);
 
         //then
-        assertThat(result, equalTo(5));
+        assertThat(result, equalTo(9));
+    }
+
+    @Test
+    public void should_sum_for_separator_at_the_beginning() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[;]\n2;3;4";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(9));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_return_error_for_invalid_order() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "]\n;//[2;3;4";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(9));
     }
 
 }
