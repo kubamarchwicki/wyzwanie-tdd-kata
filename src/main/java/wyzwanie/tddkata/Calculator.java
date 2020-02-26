@@ -1,24 +1,72 @@
 package wyzwanie.tddkata;
 
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Calculator {
 
 
-    public Integer add(String input) {
-        String[] inputNumbers = input.split(",");
+    Integer add(String input) {
 
-        if (isEmpty(input)){
+        if (isNullOrIsEmpty(input)) {
             return 0;
+        } else if (isPattern(input)) {
+            return calculateWithPattern(input);
         }
-        else if (input.length() == 1){
+
+        return calculateWithOutPattern(input);
+
+    }
+
+    private int calculateWithOutPattern(String input){
+
+        if (!Calculator.isNumeric(input) && !input.contains(",")) {
+            throw new RuntimeException("Delimiter [,] not found");
+        } else if (input.length() == 1) {
             return stringToInt(input);
+        } else {
+            return Stream.of(input.split(","))
+                    .filter(Calculator::isNumeric)
+                    .mapToInt(Integer::parseInt)
+//                    .limit(2)
+                    .sum();
         }
-        else {
-            return sum(inputNumbers[0], inputNumbers[1]);
+    }
+
+    private int calculateWithPattern(String input){
+
+        char delimeter = input.charAt(3);
+        String delmiterString = Character.toString(delimeter);
+        String substring = input.substring(7);
+        Pattern patternSubstring = Pattern.compile("^(-?.*"+delimeter+"){1,}-?.*$");
+
+        if (patternSubstring.matcher(substring).matches())
+        {
+            return Stream.of(substring.split(delmiterString))
+                    .filter(Calculator::isNumeric)
+                    .mapToInt(Integer::parseInt)
+                    .sum();
         }
+         throw new RuntimeException("Delimiter doesn't match");
+    }
 
+    private boolean isPattern(String input){
+        Pattern pattern = Pattern.compile("^//.*\\\\n.*$");
+        return pattern.matcher(input).matches();
+    }
 
+    private static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
     private int sum(String numberOne, String numberTwo){
@@ -31,6 +79,10 @@ public class Calculator {
 
     private boolean isEmpty(String input){
         return input.isEmpty();
+    }
+
+    private boolean isNullOrIsEmpty(String input){
+        return Objects.isNull(input) || isEmpty(input);
     }
 
 
