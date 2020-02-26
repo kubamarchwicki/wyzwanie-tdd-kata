@@ -3,8 +3,8 @@ package wyzwanie.tddkata;
 import java.util.Scanner;
 
 public class Calculator {
-//zadanie-2
-    public static Integer add(String input) {
+
+    public static Integer add_zadanie1(String input) {
         if (input == null || input.equals("")) {
             return 0;
         }
@@ -35,6 +35,24 @@ public class Calculator {
         return sum;
     }
 
+    //zadanie-2
+    public static Integer add(String input) {
+
+        if (input == null) return 0;
+        if (!input.matches(".*\\d.*")) return 0;
+
+        int sum = 0;
+        String numbers = input.replaceAll("[^\\d.]", ",");
+        String[] nums = numbers.split(",");
+
+        for (String num : nums) {
+            if (!num.equals("")) {
+                sum += Integer.parseInt(num);
+            }
+        }
+
+        return sum;
+    }
 
     private static boolean isNumeric(String input) {
         return input.chars().allMatch(Character::isDigit);

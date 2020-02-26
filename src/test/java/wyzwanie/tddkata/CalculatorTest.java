@@ -72,7 +72,7 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
-    @Test(expected = Exception.class)
+/*    @Test(expected = Exception.class)
     public void should_return_error_when_no_comma_as_delimeter() {
         //given
         Calculator calculatorUnderTest = new Calculator();
@@ -80,7 +80,7 @@ public class CalculatorTest {
 
         //when
         Integer result = calculatorUnderTest.add(input);
-    }
+    }*/
 
     @Test
     public void should_return_three_for_comma_at_end() {
@@ -96,16 +96,29 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_only_first_two_numbers() {
+    public void should_return_sum_when_many_random_non_numbers_characters() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "2,3,4";
+        String multipleInput = "asg,,lpjo52,,,fas,125,6,61,";
 
         //when
         Integer result = calculatorUnderTest.add(multipleInput);
 
         //then
-        assertThat(result, equalTo(5));
+        assertThat(result, equalTo(244));
+    }
+
+    @Test
+    public void should_return_zero_for_all_non_digits_characters() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "aaiosfiavsiovioas,.,..ll.asv.va.ags";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(0));
     }
 
 }
