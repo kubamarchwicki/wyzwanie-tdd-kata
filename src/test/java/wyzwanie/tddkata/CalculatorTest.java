@@ -1,12 +1,14 @@
 package wyzwanie.tddkata;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
 public class CalculatorTest {
-
 
 
     @Test
@@ -23,7 +25,7 @@ public class CalculatorTest {
     }
 
     @Test
-<<<<<<< HEAD
+
     public void oneParameterShouldReturnHisValue(){
         //given
         Calculator calculatorUnderTest = new Calculator();
@@ -35,15 +37,16 @@ public class CalculatorTest {
     }
 
     @Test
-    public void twoParametersShouldReturnSumOfThem(){
+    public void twoParametersShouldReturnSumOfThem() {
         //give
         Calculator calculatorUnderTest = new Calculator();
-        String twoParameters ="1,2";
+        String twoParameters = "1,2";
         //when
         Integer output = calculatorUnderTest.add(twoParameters);
         //then
-        assertThat(output,equalTo(3));
-=======
+        assertThat(output, equalTo(3));
+    }
+    @Test
     public void should_return_zero_for_null_input() {
         //given
         Calculator calculatorUnderTest = new Calculator();
@@ -95,7 +98,7 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void should_return_error_when_no_comma_as_delimeter() {
         //given
         Calculator calculatorUnderTest = new Calculator();
@@ -103,7 +106,32 @@ public class CalculatorTest {
 
         //when
         Integer result = calculatorUnderTest.add(input);
+
+        //then
+
     }
+
+    @Test
+    public void shouldChangeDelimiterAfterProperCommend(){
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String properCommend = "//[:]\n1:3";
+        //when
+        char result = calculatorUnderTest.setDelimiter(properCommend);
+        //then
+        assertThat(result,equalTo(':'));
+    }
+    @Test
+    public void shouldChangeDelimiterAfterProperCommend2(){
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String properCommend = "//[+]\n1:3";
+        //when
+        char result = calculatorUnderTest.setDelimiter(properCommend);
+        //then
+        assertThat(result,equalTo('+'));
+    }
+
 
     @Test
     public void should_return_three_for_comma_at_end() {
@@ -118,18 +146,7 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
-    @Test
-    public void should_sum_only_first_two_numbers() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "2,3,4";
 
-        //when
-        Integer result = calculatorUnderTest.add(multipleInput);
 
-        //then
-        assertThat(result, equalTo(5));
->>>>>>> 76a9746d69193ce89cb6d63b6c79f7efc3ed0b07
-    }
 
 }
