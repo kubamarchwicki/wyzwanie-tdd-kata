@@ -3,7 +3,7 @@ package wyzwanie.tddkata;
 import java.util.Scanner;
 
 public class Calculator {
-
+//zadanie-2
     public static Integer add(String input) {
         if (input == null || input.equals("")) {
             return 0;
