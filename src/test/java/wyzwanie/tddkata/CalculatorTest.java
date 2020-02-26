@@ -163,6 +163,19 @@ public class CalculatorTest {
         assertThat(result,equalTo(5));
     }
 
+    @Test
+    public void shouldCalculateTwoNumbersWithNewDelimiter(){
+        //given
+        Calculator calculator = new Calculator();
+        String currentDelimiter = "//[:]";
+        String mathToDo= "1:3";
+        //when
+        calculator.add(currentDelimiter);
+        Integer result = calculator.add(mathToDo);
+        //then
+        assertThat(result,equalTo(4));
+    }
+
 
 
 
