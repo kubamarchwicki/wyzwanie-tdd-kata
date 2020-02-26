@@ -79,7 +79,7 @@ public class CalculatorTest {
         String input = "1;3";
 
         //when
-        Integer result = calculatorUnderTest.add(input);
+        calculatorUnderTest.add(input);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_ten_with_custom_separator() {
+    public void should_return_ten_for_custom_separator() {
         // given
         Calculator calculatorUnderTest = new Calculator();
         String inputString = "\\[.]\n1.5.4";
@@ -106,6 +106,39 @@ public class CalculatorTest {
 
         // then
         assertThat(result, equalTo(10));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_return_error_for_wrong_delimiter_given() {
+        // given
+        Calculator calculatorUnderTest = new Calculator();
+        String inputString = "\\[.]\n1,5,4";
+
+        // when
+        calculatorUnderTest.add(inputString);
+    }
+
+    @Test
+    public void should_return_ten_for_numeric_and_alphabetic_chars() {
+        // given
+        Calculator calculatorUnderTest = new Calculator();
+        String inputString = "\\[;]\na1;5re;4rrr";
+
+        // when
+        Integer result = calculatorUnderTest.add(inputString);
+
+        // then
+        assertThat(result, equalTo(10));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_return_error_for_wrong_format_of_custom_delimiter() {
+        // given
+        Calculator calculatorUnderTest = new Calculator();
+        String inputString = "\\[;\n1;5;4";
+
+        // when
+        calculatorUnderTest.add(inputString);
     }
 
 }
