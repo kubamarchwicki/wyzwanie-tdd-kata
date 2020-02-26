@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class CalculatorTest {
 
     @Test
-    public void should_return_zero_for_empty_string() {
+    public void should_return_zero_for_empty_string() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "";
@@ -21,7 +21,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_zero_for_null_input() {
+    public void should_return_zero_for_null_input() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = null;
@@ -34,7 +34,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_self_for_a_single_number() {
+    public void should_return_self_for_a_single_number() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "42";
@@ -47,7 +47,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_sum_for_two_numbers() {
+    public void should_return_sum_for_two_numbers() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "7,11";
@@ -60,7 +60,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_ignore_non_numbers_and_sum_rest() {
+    public void should_ignore_non_numbers_and_sum_rest() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "a,3";
@@ -73,7 +73,7 @@ public class CalculatorTest {
     }
 
     @Test(expected = Exception.class)
-    public void should_return_error_when_no_comma_as_delimeter() {
+    public void should_return_error_when_no_comma_as_delimeter() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "1;3";
@@ -83,7 +83,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_three_for_comma_at_end() {
+    public void should_return_three_for_comma_at_end() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String threeComma = "3,";
@@ -96,7 +96,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_only_first_two_numbers() {
+    public void should_sum_only_first_two_numbers() throws Exception {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String multipleInput = "2,3,4";
