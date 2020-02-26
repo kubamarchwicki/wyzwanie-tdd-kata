@@ -4,6 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -99,7 +101,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_error_when_no_comma_as_delimeter() {
+    public void should_return_minus_one_when_no_comma_as_delimeter() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "1;3";
@@ -108,28 +110,21 @@ public class CalculatorTest {
         Integer result = calculatorUnderTest.add(input);
 
         //then
-
+        assertThat(result,equalTo(-1));
     }
 
     @Test
     public void shouldChangeDelimiterAfterProperCommend(){
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String properCommend = "//[:]\n1:3";
+        String properCommend = "//[:]";
+        String properCommend2 = "//[;]";
         //when
         char result = calculatorUnderTest.setDelimiter(properCommend);
+        char result2 = calculatorUnderTest.setDelimiter(properCommend2);
         //then
         assertThat(result,equalTo(':'));
-    }
-    @Test
-    public void shouldChangeDelimiterAfterProperCommend2(){
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String properCommend = "//[+]\n1:3";
-        //when
-        char result = calculatorUnderTest.setDelimiter(properCommend);
-        //then
-        assertThat(result,equalTo('+'));
+        assertThat(result2,equalTo(';'));
     }
 
 
@@ -145,6 +140,31 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(3));
     }
+
+    @Test
+    public void shouldReturnListOfDisabledDelimiters(){
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        char goodDelimiter = ':';
+        //when
+        List<Character> disabledDelimiters = calculatorUnderTest.disabledDelimiters(goodDelimiter);
+
+        //then
+        assertThat(disabledDelimiters.contains(':'),equalTo(false));
+    }
+    @Test
+    public void shouldReturnHighFiveWhenDelimiterHasBeenChanged(){
+        //given
+        Calculator calculator = new Calculator();
+        String goodDelimiter = "//[:]";
+        //when
+        Integer result = calculator.add(goodDelimiter);
+        //then
+        assertThat(result,equalTo(5));
+    }
+
+
+
 
 
 
