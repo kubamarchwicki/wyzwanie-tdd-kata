@@ -1,5 +1,6 @@
 package wyzwanie.tddkata;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -95,6 +96,7 @@ public class CalculatorTest {
         assertThat(result, equalTo(3));
     }
 
+    @Ignore
     @Test
     public void should_sum_only_first_two_numbers() throws Exception {
         //given
@@ -108,4 +110,29 @@ public class CalculatorTest {
         assertThat(result, equalTo(5));
     }
 
+    @Test
+    public void should_sum_numbers_with_new_delimeter() throws Exception {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[;]\n1;2";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(3));
+    }
+
+    @Test
+    public void should_sum_numbers_with_new_delimeter_and_random_values() throws Exception {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String multipleInput = "//[;]\njhagh;2;fua7;ufhsa98;;;fsh;3";
+
+        //when
+        Integer result = calculatorUnderTest.add(multipleInput);
+
+        //then
+        assertThat(result, equalTo(5));
+    }
 }

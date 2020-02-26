@@ -6,21 +6,29 @@ import java.util.stream.Stream;
 public class Calculator {
 
     public Integer add(String input) throws Exception {
+
+
         if (isNullOrEmpty(input)) {
             return 0;
-        } else if (!isNumber(input) && !input.contains(",")) {
-            throw new Exception("\",\" not found!");
         }
 
-        return Stream.of(input.split(","))
+        String delimeter = hasInputNewDelimeter(input);
+        if (delimeter != ",") {
+            input = input.substring(6);
+        }
+
+        if (!isNumber(input) && !input.contains(delimeter)) {
+            throw new Exception("\"" + delimeter + "\" not found!");
+        }
+
+        return Stream.of(input.split(delimeter))
                 .filter(Calculator::isNumber)
                 .mapToInt(Integer::parseInt)
-                .limit(2)
                 .sum();
     }
 
-    private static boolean isNullOrEmpty(String str) {
-        return str == null || str.isEmpty();
+    private static boolean isNullOrEmpty(String input) {
+        return null == input || input.isEmpty();
     }
 
     private static boolean isNumber(String input) {
@@ -30,6 +38,14 @@ public class Calculator {
             return false;
         }
         return true;
+    }
+
+    private static String hasInputNewDelimeter(String input) {
+        if (input.startsWith("//[") && input.contains("]\n")) {
+            return Character.toString(input.charAt(3));
+        } else {
+            return ",";
+        }
     }
 
     //Do not modify code below this line. This is just a runner
