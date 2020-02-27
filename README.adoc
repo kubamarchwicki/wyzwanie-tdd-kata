@@ -63,6 +63,24 @@ Tips::
 ** Poprzednia funkcjonalność powinna działać bez zmian.
 ** *Przykład*: `//[;]\n1;2` powinno zwrócić `3`
 
+== Zadanie {counter: seq}. Separator dowolnej długości i liczby w odpowiednim zakresie
+
+Separator dowolnej długości::
+* Separator powinien być dowolnej długości a nie tylko ograniczony do jednego znaku.
+* Dłuższe separatory powinny być definiowane w następujący
+sposób: `//[delimiter]\n[numbers...]`
+* *Przykład*: `//[aa]\n1aa2aa3` powinno zwrócić `6`.
+
+Liczby w odpowiednim zakresie::
+* Dodajemy tylko liczny dodatnie:
+** Jeśli zostały przekazane liczby ujemne, powinien zostać rzucony
+wyjątek _negatives not allowed_.
+** Wszystkie ujemne liczby powinny zostać wyświetlone w wiadomości o wyjątku.
+** `2,3,-1,6,-4` => `NegativeNotAllowed("-1,-4")`
+* Ograniczamy zakres
+** Liczby większe niż 1000 powinny być ignorowane.
+** *Przykład*: `2000,2,500` powinno zwrócić `502`
+
 == Credits
 
 Zadanie bazują na projekcie link:http://osherove.com/tdd-kata-1/[TDD Kata by Roy Osherove]
