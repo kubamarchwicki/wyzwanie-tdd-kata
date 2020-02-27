@@ -73,7 +73,7 @@ public class CalculatorTest {
     }
 
     @Test(expected = Exception.class)
-    public void should_return_error_when_no_comma_as_delimeter() {
+    public void should_return_error_when_no_comma_as_delimiter() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "1;3";
@@ -96,7 +96,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_only_first_two_numbers() {
+    public void should_sum_all_numbers() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String multipleInput = "2,3,4";
@@ -105,7 +105,33 @@ public class CalculatorTest {
         Integer result = calculatorUnderTest.add(multipleInput);
 
         //then
-        assertThat(result, equalTo(5));
+        assertThat(result, equalTo(9));
+    }
+
+    @Test
+    public void should_set_delimiter_coma() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[,]\n1,2,3";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(6));
+    }
+
+    @Test
+    public void should_set_delimiter_to_non_default() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[;]\n1;2;3";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(6));
     }
 
 }
