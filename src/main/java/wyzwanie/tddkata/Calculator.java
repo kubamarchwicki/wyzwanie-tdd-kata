@@ -20,7 +20,39 @@ public class Calculator {
         return sum;
     }
 
+/*
 
+// good example of implementation
+
+public Integer add(String input) {
+        if (Objects.isNull(input) || input.isEmpty()) {
+            return 0;
+        }
+
+        if (!Calculator.isNumeric(input) && !input.contains(",")) {
+            throw new RuntimeException("Delimiter [,] not found");
+        }
+
+        return Stream.of(input.split(","))
+                .filter(Calculator::isNumeric)
+                .mapToInt(Integer::valueOf)
+                .limit(2)
+                .sum();
+    }
+
+    static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+ */
 
     //Do not modify code below this line. This is just a runner
 
