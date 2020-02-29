@@ -257,7 +257,7 @@ public class CalculatorTest {
         Calculator calculatorUnderTest = new Calculator();
         String input = "5,-5";
         exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("NegativeNotAllowed(\"-\5)");
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-5\")");
 
         //when
         Integer result = calculatorUnderTest.add(input);
@@ -290,10 +290,10 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_exception_for_minus_two_coma_one_minus_nine() {
+    public void should_return_exception_for_minus_two_coma_one_come_minus_nine() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String input = "-2, 1, -9";
+        String input = "-2,1,-9";
         exceptionRule.expect(NegativeNotAllowed.class);
         exceptionRule.expectMessage("NegativeNotAllowed(\"-2, -9\")");
 
