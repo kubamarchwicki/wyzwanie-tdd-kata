@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Calculator {
+    public final static int UPPER_LIMIT = 1000;
 
     public Integer add(String input) {
         int result = 0;

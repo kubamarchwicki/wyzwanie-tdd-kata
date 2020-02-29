@@ -262,7 +262,7 @@ public class CalculatorTest {
 
         //then
         exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("-5");
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-\5)");
 
     }
 
@@ -277,7 +277,7 @@ public class CalculatorTest {
 
         //then
         exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("-2");
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-2\")");
     }
 
     @Test
@@ -291,7 +291,7 @@ public class CalculatorTest {
 
         //then
         exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("-4");
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-4\")");
     }
 
     @Test
@@ -305,14 +305,14 @@ public class CalculatorTest {
 
         //then
         exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("-2, -9");
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-2, -9\")");
     }
 
     @Test
     public void should_return_sixteen_for_nine_coma_upperlimit_with_one_coma_seven() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        int upperlimit = Calculator.upperlimit;
+        int upperlimit = Calculator.UPPER_LIMIT;
         String input = "9,"+(upperlimit+1)+",7";
 
         //when
