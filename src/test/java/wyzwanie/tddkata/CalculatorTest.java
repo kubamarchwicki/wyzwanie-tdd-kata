@@ -295,7 +295,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_exception_for_minus_two_coma_one_minus_9() {
+    public void should_return_exception_for_minus_two_coma_one_minus_nine() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "-2, 1, -9";
