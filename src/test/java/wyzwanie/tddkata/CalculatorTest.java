@@ -256,14 +256,11 @@ public class CalculatorTest {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "5,-5";
-
-        //when
-        Integer result = calculatorUnderTest.add(input);
-
-        //then
         exceptionRule.expect(NegativeNotAllowed.class);
         exceptionRule.expectMessage("NegativeNotAllowed(\"-\5)");
 
+        //when
+        Integer result = calculatorUnderTest.add(input);
     }
 
     @Test
@@ -271,13 +268,12 @@ public class CalculatorTest {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "-2";
+        exceptionRule.expect(NegativeNotAllowed.class);
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-2\")");
 
         //when
         Integer result = calculatorUnderTest.add(input);
 
-        //then
-        exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("NegativeNotAllowed(\"-2\")");
     }
 
     @Test
@@ -285,13 +281,12 @@ public class CalculatorTest {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "//[:]\n3:-4:6";
+        exceptionRule.expect(NegativeNotAllowed.class);
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-4\")");
 
         //when
         Integer result = calculatorUnderTest.add(input);
 
-        //then
-        exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("NegativeNotAllowed(\"-4\")");
     }
 
     @Test
@@ -299,13 +294,12 @@ public class CalculatorTest {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "-2, 1, -9";
+        exceptionRule.expect(NegativeNotAllowed.class);
+        exceptionRule.expectMessage("NegativeNotAllowed(\"-2, -9\")");
 
         //when
         Integer result = calculatorUnderTest.add(input);
 
-        //then
-        exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("NegativeNotAllowed(\"-2, -9\")");
     }
 
     @Test
@@ -320,5 +314,19 @@ public class CalculatorTest {
 
         //then
         assertThat(result, equalTo(16));
+    }
+
+    @Test
+    public void should_return_zero_for_upperlimit_with_two() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        int upperlimit = Calculator.UPPER_LIMIT;
+        String input = (upperlimit+2)+"";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(0));
     }
 }
