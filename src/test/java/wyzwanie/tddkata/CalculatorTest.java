@@ -1,6 +1,8 @@
 package wyzwanie.tddkata;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
@@ -246,4 +248,77 @@ public class CalculatorTest {
         assertThat(result, equalTo(15));
     }
 
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
+
+    @Test
+    public void should_return_exception_for_five_coma_minus_five() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "5,-5";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        exceptionRule.expect(NegativeNotAllowed.class);
+        exceptionRule.expectMessage("-5");
+
+    }
+
+    @Test
+    public void should_return_exception_for_minus_two() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "-2";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        exceptionRule.expect(NegativeNotAllowed.class);
+        exceptionRule.expectMessage("-2");
+    }
+
+    @Test
+    public void should_return_exception_for_colon_delimiter_and_three_colon_minus_four_colon_six() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[:]\n3:-4:6";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        exceptionRule.expect(NegativeNotAllowed.class);
+        exceptionRule.expectMessage("-4");
+    }
+
+    @Test
+    public void should_return_exception_for_minus_two_coma_one_minus_9() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "-2, 1, -9";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        exceptionRule.expect(NegativeNotAllowed.class);
+        exceptionRule.expectMessage("-2, -9");
+    }
+
+    @Test
+    public void should_return_sixteen_for_nine_coma_upperlimit_with_one_coma_seven() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        int upperlimit = Calculator.upperlimit;
+        String input = "9,"+(upperlimit+1)+",7";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(16));
+    }
 }
