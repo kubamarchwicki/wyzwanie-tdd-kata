@@ -1,111 +1,53 @@
 package wyzwanie.tddkata;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CalculatorHelperTest {
 
-    @Test
-    public void should_return_comma_as_default_delimiter_when_input_is_empty() {
-        
+    @ParameterizedTest
+    @MethodSource
+    public void calculatorHelper_should_find_delimiter(String input, String expectedResult) {
         //given
-        String input = "";
 
         //when
         String delimiter = CalculatorHelper.findDelimiter(input);
-        
-        //then
-        assertThat(delimiter, equalTo(","));
-    }
-    
-    @Test
-    public void should_return_comma_as_default_delimiter() {
-        
-        //given
-        String input = "1,2,3";
 
-        //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
-        
         //then
-        assertThat(delimiter, equalTo(","));
+        assertThat(delimiter, equalTo(expectedResult));
     }
 
-    @Test
-    public void should_return_comma_as_delimiter_when_delimiter_not_defined() {
-        
-        //given
-        String input = "//[]\n3";
-
-        //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
-        
-        //then
-        assertThat(delimiter, equalTo(","));
+    private static Stream<Arguments> calculatorHelper_should_find_delimiter() {
+        return Stream.of(
+            Arguments.of("", ","),
+            Arguments.of("42", ","),
+            Arguments.of("7,11", ","),
+            Arguments.of("//[]\n3", ","),
+            Arguments.of("//[n3", ","),
+            Arguments.of("]\n;//[3", ","),
+            Arguments.of("//[a]\n3", "a"),
+            Arguments.of("//[baba]\n3", "baba")
+        );
     }
+
 
     @Test
-    public void should_return_comma_as_delimiter_when_lack_of_closing_tag() {
-        
-        //given
-        String input = "//[n3";
-
-        //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
-        
-        //then
-        assertThat(delimiter, equalTo(","));
-    }
-
-    @Test
-    public void should_return_comma_as_delimiter_when_closing_tag_is_at_the_begining() {
-        
-        //given
-        String input = "]\n;//[3";
-
-        //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
-        
-        //then
-        assertThat(delimiter, equalTo(","));
-    }
-
-    @Test
-    public void should_return_one_character_as_delimiter() {
-        
-        //given
-        String input = "//[a]\n3";
-
-        //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
-        
-        //then
-        assertThat(delimiter, equalTo("a"));
-    }
-
-    @Test
-    public void should_return_many_characters_as_delimiter() {
-        
-        //given
-        String input = "//[baba]\n3";
-
-        //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
-        
-        //then
-        assertThat(delimiter, equalTo("baba"));
-    }
-
-    @Test(expected = Exception.class)
     public void should_throw_exception_when_delimiter_is_number() {
         
         //given
         String input = "//[123]\n3";
 
         //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
+        Assertions.assertThrows(Exception.class, () -> CalculatorHelper.findDelimiter(input));
     }
 
 }

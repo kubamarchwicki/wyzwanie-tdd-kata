@@ -2,7 +2,12 @@ package wyzwanie.tddkata;
 
 class NegativeNotAllowed extends RuntimeException {
 
-    public NegativeNotAllowed(String message) {
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public NegativeNotAllowed(String message) {
         super(message);
     } 
 }
