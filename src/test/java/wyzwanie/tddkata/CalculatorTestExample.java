@@ -1,14 +1,11 @@
 package wyzwanie.tddkata;
 
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Rule;
-
-public class CalculatorTest {
+public class CalculatorTestExample {
 
     @Test
     public void should_return_zero_for_empty_string() {
@@ -76,7 +73,7 @@ public class CalculatorTest {
     }
 
     @Test(expected = Exception.class)
-    public void should_return_error_when_no_valid_delimeter_apper_in_given_string() {
+    public void should_return_error_when_no_comma_as_delimiter() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String input = "1;3";
@@ -99,7 +96,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_all_given_numbers() {
+    public void should_sum_all_numbers() {
         //given
         Calculator calculatorUnderTest = new Calculator();
         String multipleInput = "2,3,4";
@@ -112,59 +109,29 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_sum_all_given_numbers_with_empty_delimiter_declaration() {
+    public void should_set_delimiter_coma() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "//[]\n2,3,4";
-
-        //when
-        Integer result = calculatorUnderTest.add(multipleInput);
-
-        //then
-        assertThat(result, equalTo(9));
-    } 
-
-    @Test
-    public void should_sum_all_given_numbers_with_custom_delimiter() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "//[baba]\n2baba3baba4";
-
-        //when
-        Integer result = calculatorUnderTest.add(multipleInput);
-
-        //then
-        assertThat(result, equalTo(9));
-    }
-
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
-    
-    @Test
-    public void should_throw_exception_negativ_not_allowed() {
-        //then
-        exceptionRule.expect(NegativeNotAllowed.class);
-        exceptionRule.expectMessage("-4, -6");
-        
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String inputWithNegatives = "4,-4,6,8,-6";
-
-        //when
-        calculatorUnderTest.add(inputWithNegatives);
-    }
-
-    @Test
-    public void should_sum_numbers_below_2000() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String input = "600,2,2000";
+        String input = "//[,]\n1,2,3";
 
         //when
         Integer result = calculatorUnderTest.add(input);
 
         //then
-        assertThat(result, equalTo(602));
+        assertThat(result, equalTo(6));
     }
- 
+
+    @Test
+    public void should_set_delimiter_to_non_default() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[;]\n1;2;3";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(6));
+    }
+
 }
