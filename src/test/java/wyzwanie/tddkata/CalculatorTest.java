@@ -329,4 +329,29 @@ public class CalculatorTest {
         //then
         assertThat(result, equalTo(0));
     }
+
+    @Test
+    public void should_return_seven_for_ppp_delimiter_and_six_ppp_one() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[ppp]\n6ppp1";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(7));
+    }
+    @Test
+    public void should_return_three_for_coma_coma_coma_delimiter_and_three_coma_coma_coma() {
+        //given
+        Calculator calculatorUnderTest = new Calculator();
+        String input = "//[,,,]\n3,,,";
+
+        //when
+        Integer result = calculatorUnderTest.add(input);
+
+        //then
+        assertThat(result, equalTo(3));
+    }
 }
