@@ -12,7 +12,7 @@ public class Calculator {
         if (input == null || input.length() == 0) {
             return 0;
         }
-        String delimiter = CalculatorHelper.findDelimiter(input);
+        String delimiter = findDelimiter(input);
         input = isCustomDelimiterSet(input);
         List<Integer> listOfIntegers = Arrays.asList(input.split(delimiter)).stream()
             .filter(Calculator::isNumber)
@@ -53,6 +53,23 @@ public class Calculator {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    static String findDelimiter(String input) throws IllegalArgumentException  {
+        if (input.startsWith("//[") && input.contains("]\n")) {
+            int indexOfClosingTag = input.indexOf("]\n");
+            String delimiter = input.substring(3, indexOfClosingTag);
+            if (delimiter.length() == 0) {
+                return ",";
+            }
+            try {
+                Integer.parseInt(delimiter);
+                throw new IllegalArgumentException("Delimiter not defined");
+            } catch(NumberFormatException e) {
+                return delimiter;
+            }
+        }
+        return ",";
     }
 
     //Do not modify code below this line. This is just a runner

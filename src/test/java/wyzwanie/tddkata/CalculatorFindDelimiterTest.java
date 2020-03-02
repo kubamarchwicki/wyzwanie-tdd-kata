@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CalculatorHelperTest {
+public class CalculatorFindDelimiterTest {
 
     @ParameterizedTest
     @MethodSource
@@ -20,7 +20,7 @@ public class CalculatorHelperTest {
         //given
 
         //when
-        String delimiter = CalculatorHelper.findDelimiter(input);
+        String delimiter = Calculator.findDelimiter(input);
 
         //then
         assertThat(delimiter, equalTo(expectedResult));
@@ -47,7 +47,7 @@ public class CalculatorHelperTest {
         String input = "//[123]\n3";
 
         //when
-        Assertions.assertThrows(Exception.class, () -> CalculatorHelper.findDelimiter(input));
+        Assertions.assertThrows(Exception.class, () -> Calculator.findDelimiter(input));
     }
 
 }
