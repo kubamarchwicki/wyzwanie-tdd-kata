@@ -11,7 +11,6 @@ public class Calculator {
 
     public Integer add(String input) {
         int result = 0;
-
         if(input == null || input.isEmpty())
             return result;
 
@@ -26,7 +25,7 @@ public class Calculator {
     }
 
     private static boolean hasCustomDelimiter(String input){
-        return input.matches("^/{2}\\[.]\\n.+$");
+        return input.matches("^/{2}\\[.+]\\n.+$");
     }
 
     private static boolean hasLetters(String input){
