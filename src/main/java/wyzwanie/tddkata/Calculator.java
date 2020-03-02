@@ -8,32 +8,34 @@ import java.lang.IllegalArgumentException;
 
 public class Calculator {
 
-    public Integer add(String input) throws IllegalArgumentException, NegativeNotAllowed {
+    public Integer add(String input) throws IllegalArgumentException {
         if (input == null || input.length() == 0) {
             return 0;
         }
         String delimiter = CalculatorHelper.findDelimiter(input);
-        if (input.startsWith("//[") && input.contains("]\n")) {
-            String[] temp = input.split("]\n", 2);
-            input = temp[1];
-        }
-        String[] arrayOfGivenNumbers = input.split(delimiter);
-        List<String> listOfGivenNumbers = Arrays.asList(arrayOfGivenNumbers);
-        List<Integer> listOfIntegers = listOfGivenNumbers.stream()
+        input = isCustomDelimiterSet(input);
+        List<Integer> listOfIntegers = Arrays.asList(input.split(delimiter)).stream()
             .filter(Calculator::isNumber)
             .map(s -> Integer.parseInt(s))
             .collect(Collectors.toList());
         if (listOfIntegers.size() == 0) {
             throw new IllegalArgumentException("invalid input data");
         }
-        containsNegatives(listOfIntegers);    
-        Integer result = listOfIntegers.stream()    
+        containsNegativesNumbers(listOfIntegers);    
+        return listOfIntegers.stream()    
             .filter(num -> num < 2000)
             .reduce(0, (sum, number) ->  sum + number);
-        return result;
     }
-
-    static void containsNegatives(List<Integer> input) throws NegativeNotAllowed {
+    
+    static String isCustomDelimiterSet(String input) {
+        if (input.startsWith("//[") && input.contains("]\n")) {
+            String[] temp = input.split("]\n", 2);
+            return temp[1];
+        }
+        return input;
+    }
+    
+    static void containsNegativesNumbers(List<Integer> input) throws NegativeNotAllowed {
         String message = input.stream() 
             .filter(n -> n < 0)
             .map(n -> n.toString())
