@@ -1,10 +1,9 @@
 package wyzwanie.tddkata;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Calculator {
     public final static int UPPER_LIMIT = 1000;
@@ -13,57 +12,66 @@ public class Calculator {
     public Integer add(String input) {
         int result = 0;
 
-
         if(input == null || input.isEmpty())
             return result;
-        else if(input.matches("^/{2}\\[.]\\n.+$")){
-            delimiter = Character.toString(input.charAt(3));
-            input = input.substring(input.indexOf('\n')+1);
-        }
 
-        if(input.matches("^.*[a-zA-Z]+.*$")){
-            // TODO: Refactor
-            input = input.replaceAll("[^\\d"+delimiter+"]", "0");
-        }
+        if(hasCustomDelimiter(input))
+            input = extractDelimiterAndPrepareInput(input);
 
+        if(hasLetters(input))   // Setting letters to 0 allows to ignore them while doing calculations
+            input = setLettersToZero(input);
 
-        if(!input.contains(delimiter)) {
-            int inputParsed = Integer.parseInt(input);
-            if (inputParsed < 0) {
-                throw new NegativeNotAllowed(input);
-            }
-            result += inputParsed <= UPPER_LIMIT ? inputParsed : 0;
-        }
-        else {
-            result = inputParser(input);
-        }
-
+        result = parseAndSumInput(input);
         return result;
     }
 
-    private int inputParser(String input){
-        boolean hasNegatives = false;
+    private static boolean hasCustomDelimiter(String input){
+        return input.matches("^/{2}\\[.]\\n.+$");
+    }
+
+    private static boolean hasLetters(String input){
+        return input.matches("^.*[a-zA-Z]+.*$");
+    }
+
+    private String setLettersToZero(String input){
+        /** Letters shall be ignored so changing letters to 0 allows
+         *  input's elements to be added and result do not change.*/
+        return input.replaceAll("[^\\d"+delimiter+"]", "0");
+    }
+
+    private String extractDelimiterAndPrepareInput(String input){
+        delimiter = input.substring(3, input.indexOf("]"));
+        if(delimiter.equals("."))
+            delimiter = "\\.";
+        input = input.substring(input.indexOf('\n')+1);
+        return input;
+    }
+
+    private int parseAndSumInput(String input){
         List<String> inputList = Arrays.asList(input.split(delimiter));
         int result = 0;
-        String negativesToMessage = "";
 
         for ( String s: inputList ) {
             int value = Integer.parseInt(s);
-            if (value < 0) {
-                hasNegatives = true;
-                negativesToMessage += value + ", ";
-            }
-            if (!hasNegatives)
-                result += value <= UPPER_LIMIT ? value : 0;
+            if (value < 0)
+                throwNegativeNotAllowedWithMessage(inputList);
+            result += value <= UPPER_LIMIT ? value : 0;
         }
-
-        if(hasNegatives)
-            throw new NegativeNotAllowed(negativesToMessage.replaceAll(", $", ""));
 
         return result;
     }
 
-    //Do not modify code below this line. This is just a runner
+    private void throwNegativeNotAllowedWithMessage(List<String> inputList){
+        inputList = inputList.stream()
+                .filter(s -> Integer.parseInt(s) < 0)
+                .collect(Collectors.toList());
+
+        String negativesToMessage = String.join(", ", inputList);
+        throw new NegativeNotAllowed(negativesToMessage);
+    }
+
+
+        //Do not modify code below this line. This is just a runner
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
