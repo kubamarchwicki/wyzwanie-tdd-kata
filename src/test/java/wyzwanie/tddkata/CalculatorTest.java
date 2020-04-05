@@ -59,19 +59,6 @@ public class CalculatorTest {
         assertThat(result, equalTo(18));
     }
 
-    @Test
-    public void should_ignore_non_numbers_and_sum_rest() {
-        //given
-        Calculator calculatorUnderTest = new Calculator();
-        String input = "a,3";
-
-        //when
-        Integer result = calculatorUnderTest.add(input);
-
-        //then
-        assertThat(result, equalTo(3));
-    }
-
     @Test(expected = Exception.class)
     public void should_return_error_when_no_comma_as_delimeter() {
         //given
@@ -86,10 +73,10 @@ public class CalculatorTest {
     public void should_return_three_for_comma_at_end() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String threeComma = "3,";
+        String input = "3,";
 
         //when
-        Integer result = calculatorUnderTest.add(threeComma);
+        Integer result = calculatorUnderTest.add(input);
 
         //then
         assertThat(result, equalTo(3));
@@ -99,10 +86,10 @@ public class CalculatorTest {
     public void should_sum_only_first_two_numbers() {
         //given
         Calculator calculatorUnderTest = new Calculator();
-        String multipleInput = "2,3,4";
+        String input = "2,3,4";
 
         //when
-        Integer result = calculatorUnderTest.add(multipleInput);
+        Integer result = calculatorUnderTest.add(input);
 
         //then
         assertThat(result, equalTo(5));
